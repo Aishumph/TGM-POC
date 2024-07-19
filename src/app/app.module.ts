@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileComponent } from './file/file.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentComponent } from './content/content.component';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
+import { MaterialModule } from 'src/material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ContentComponent } from './content/content.component';
     NavbarComponent,
     FileComponent,
     SidenavComponent,
-    ContentComponent
+    ContentComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import { ContentComponent } from './content/content.component';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    
+    MaterialModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
