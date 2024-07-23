@@ -15,6 +15,10 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentComponent } from './content/content.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
 import { MaterialModule } from 'src/material/material.module';
+import { FloatingPanelsComponent } from './floating-panels/floating-panels.component';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { AngularFormsComponent } from './angular-forms/angular-forms.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { MaterialModule } from 'src/material/material.module';
     FileComponent,
     SidenavComponent,
     ContentComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    FloatingPanelsComponent,
+    AngularFormsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,8 @@ import { MaterialModule } from 'src/material/material.module';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MaterialModule
+    MaterialModule,
+    OverlayModule
 
 
   ],

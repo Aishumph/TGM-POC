@@ -1,0 +1,161 @@
+.whole_design
+{
+  width:100%;
+  display: flex;
+flex-direction: row;
+justify-content: center;
+padding-top: 10%;
+}
+
+.table_design
+{
+  width:70% !important;
+  height:200vh;
+}
+
+.floating{
+  position: fixed;
+}
+
+.menu_design{
+  position:fixed;
+  left:20px;
+  bottom: 20px;
+}
+
+.two table
+{
+  display: flex;
+  flex-direction: column;
+}
+.example-list {
+  width: 200px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  // background: #fff;
+  text-align: center;
+  padding: 0px;
+  margin: 0;
+  height:150px;
+  background: #ccc;
+}
+
+.example-list > li {
+  list-style-type: none;
+  border-bottom: solid 1px #8b8b8b;
+  padding: 8px 0;
+}
+
+.example-list > li:last-child {
+  border-bottom: none;
+}
+//scss
+.menu-button{
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+}
+
+@keyframes moveOne {
+  from {bottom: 2rem; opacity: 0;}
+  to {bottom: 6rem;}
+}
+@keyframes moveOneLabel {
+  from {bottom: 2rem; opacity: 0;}
+  to {bottom: 6.5rem;}
+}
+
+@keyframes moveTwo {
+  from {bottom: 2rem; opacity: 0;}
+  to {bottom: 9.5rem;}
+}
+@keyframes moveTwoLabel {
+  from {bottom: 2rem; opacity: 0;}
+  to {bottom: 10rem;}
+}
+
+.action-button{
+  position: fixed;
+  right: 2rem;
+  transition-property: opacity;
+}
+.label{
+  position: fixed;
+  right: 5rem;
+  left: auto;
+  height: 25px;
+  width: 100px;
+  line-height: 25px;
+  min-height: 25px;
+  vertical-align: top;
+  font-size: 12px;
+  padding: 0 0;
+  margin: 0;
+}
+
+.one{
+  bottom: 6rem;
+  animation: moveOne 0.2s;
+}
+.labelone{
+  bottom: 6.5rem;
+  animation: moveOneLabel 0.2s;
+}
+
+.two{
+  bottom: 9.5rem;
+  animation: moveTwo 0.25s;
+}
+.labeltwo{
+  bottom: 10rem;
+  animation: moveTwoLabel 0.25s;
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

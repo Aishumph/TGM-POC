@@ -1,52 +1,138 @@
 
-<div class="menu_design">
-  <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  </div>
+<div class="whole_design">
 
-  <div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div class="menu_design">
+    <button mat-mini-fab color="primary" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin" aria-label="Example icon button with a menu icon">
+      <mat-icon>menu</mat-icon>
 
-
-    <ng-container matColumnDef="airline">
-      <th mat-header-cell *matHeaderCellDef> AIRLINE </th>
-      <td mat-cell *matCellDef="let element" > {{element.airline}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Departure">
-      <th mat-header-cell *matHeaderCellDef> DEPARTURE </th>
-      <td mat-cell *matCellDef="let element"> {{element.Departure}} </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Arrival">
-      <th mat-header-cell *matHeaderCellDef> Arrival </th>
-      <td mat-cell *matCellDef="let element"> {{element.Arrival}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Itinerary">
-      <th mat-header-cell *matHeaderCellDef> Itinerary </th>
-      <td mat-cell *matCellDef="let element"> {{element.Itinerary}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row  (click)="clickedRows.add(row)"
-    [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;" (contextmenu)="onContextMenu($event, row)"></tr>
-  </table>
-
-  <div style="visibility: hidden; position: fixed"
-
-        [style.left]="contextMenuPosition.x"
-        [style.top]="contextMenuPosition.y"
-        [matMenuTriggerFor]="contextMenu">
+    </button>
     </div>
-    <mat-menu #contextMenu="matMenu">
-      <ng-template matMenuContent let-item="item">
-        <button mat-menu-item (click)="onContextMenuAction1(item)">Show flight details</button>
-        <button mat-menu-item (click)="onContextMenuAction2(item)">Show airlines</button>
-      </ng-template>
-    </mat-menu>
-  </div>
+
+    <ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <ul class="example-list">
+    <li>Home</li>
+    <li>Signup</li>
+    <li>Login</li>
+    <li>Logout</li>
+  </ul>
+</ng-template>
+
+    <div class="table_design" >
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 ">
+
+
+      <ng-container matColumnDef="airline">
+        <th mat-header-cell *matHeaderCellDef> AIRLINE </th>
+        <td mat-cell *matCellDef="let element" > {{element.airline}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Departure">
+        <th mat-header-cell *matHeaderCellDef> DEPARTURE </th>
+        <td mat-cell *matCellDef="let element"> {{element.Departure}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Arrival">
+        <th mat-header-cell *matHeaderCellDef> Arrival </th>
+        <td mat-cell *matCellDef="let element"> {{element.Arrival}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Itinerary">
+        <th mat-header-cell *matHeaderCellDef> Itinerary </th>
+        <td mat-cell *matCellDef="let element"> {{element.Itinerary}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions"> Expansion</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="expand row"  (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-position"> {{element.airline}} </div>
+              <div class="example-element-symbol"> {{element.Departure}} </div>
+              <div class="example-element-name"> {{element.name}} </div>
+              <div class="example-element-weight"> {{element.Itinerary}} </div>
+            </div>
+
+          </div>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (contextmenu)="onContextMenu($event, element)"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+      <tr mat-row *matRowDef="let row;  columns: ['expandedDetail']" class="example-detail-row" ></tr>
+
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+</mat-paginator> -->
+
+    <div style="visibility: hidden; position: fixed"
+
+          [style.left]="contextMenuPosition.x"
+          [style.top]="contextMenuPosition.y"
+          [matMenuTriggerFor]="contextMenu">
+      </div>
+      <mat-menu #contextMenu="matMenu">
+        <ng-template matMenuContent let-item="item">
+          <button mat-menu-item (click)="onContextMenuAction1(item)">Show flight details</button>
+          <button mat-menu-item (click)="onContextMenuAction2(item)">Show airlines</button>
+        </ng-template>
+      </mat-menu>
+    </div>
+
+
+</div>
+
+
+
+
+<button mat-fab color="accent" (click)="clickMenu()"
+    class="menu-button"
+
+   >
+  <i class="material-icons" *ngIf="!openMenu">menu</i>
+  <i class="material-icons" *ngIf="openMenu">close</i>
+</button>
+
+<!-- menu button -->
+<button mat-mini-fab
+  class="action-button one mat-elevation-z8"
+  *ngIf="openMenu"
+  color="basic"
+  (click)="hello( 'button one')">
+  <i class="material-icons">home</i>
+</button>
+
+
+
+<button mat-mini-fab
+  class="action-button two mat-elevation-z8"
+  *ngIf="openMenu"
+  color="basic"
+  (click)="hello('button two')">
+  <i class="material-icons">done_all</i>
+</button>
+

@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContentComponent } from './content/content.component';
 import { FileComponent } from './file/file.component';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
 
 const routes: Routes = [
 {path: 'file', component: FileComponent},
@@ -10,6 +11,7 @@ const routes: Routes = [
 {path: 'go', component: ContentComponent},
 {path: 'tools', component: ContentComponent},
 {path: 'help', component: ContentComponent},
+{path:'poc',component:ContextMenuComponent}
 ];
 
 @NgModule({
