@@ -18,6 +18,15 @@ import { MaterialModule } from 'src/material/material.module';
 import { FloatingPanelsComponent } from './floating-panels/floating-panels.component';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { AngularFormsComponent } from './angular-forms/angular-forms.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+// import { DraggableDialogComponent } from './draggable-dialog/draggable-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+// import { MatButtonModule } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+// import { AppComponent } from './app.component';
+// import { DraggableDialogComponent } from './draggable-dialog/draggable-dialog.component';
 
 
 @NgModule({
@@ -29,7 +38,9 @@ import { AngularFormsComponent } from './angular-forms/angular-forms.component';
     ContentComponent,
     ContextMenuComponent,
     FloatingPanelsComponent,
-    AngularFormsComponent
+    AngularFormsComponent,
+    SignupFormComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,8 +51,10 @@ import { AngularFormsComponent } from './angular-forms/angular-forms.component';
     MatButtonModule,
     MatCardModule,
     MaterialModule,
-    OverlayModule
-
+    OverlayModule,
+ ReactiveFormsModule,
+ DragDropModule,
+ MatDialogModule
 
   ],
   providers: [],

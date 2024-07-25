@@ -2,24 +2,20 @@
 <div class="whole_design">
 
   <div class="menu_design">
-    <button mat-mini-fab color="primary" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin" aria-label="Example icon button with a menu icon">
+
+    <button mat-mini-fab color="primary" (click)="isOpen = !isOpen"  [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
 
     </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Home</button>
+  <button mat-menu-item>Sign In</button>
+  <button mat-menu-item>Login</button>
+</mat-menu>
+
     </div>
 
-    <ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen"
->
-  <ul class="example-list">
-    <li>Home</li>
-    <li>Signup</li>
-    <li>Login</li>
-    <li>Logout</li>
-  </ul>
-</ng-template>
+
 
     <div class="table_design" >
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 ">

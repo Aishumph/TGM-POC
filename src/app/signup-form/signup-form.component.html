@@ -1,0 +1,150 @@
+<form [formGroup]="signupForm">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field class="form-design">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" required />
+
+        <mat-error
+          *ngIf="
+            signupForm.get('name')?.hasError('required') &&
+            signupForm.get('name')?.touched
+          "
+        >
+          Name is required
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            signupForm.get('name')?.errors?.minlength &&
+            signupForm.get('name')?.touched
+          "
+        >
+          Name must be at least
+          {{ signupForm.get("name")?.errors?.minlength.requiredLength }}
+          characters long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-design">
+        <mat-label> Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" required />
+
+        <mat-error
+          *ngIf="
+            signupForm.get('email')?.hasError('required') &&
+            signupForm.get('email')?.touched
+          "
+        >
+          Email is required
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            signupForm.get('email')?.hasError('pattern') &&
+            signupForm.get('email')?.touched
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-design">
+        <mat-label>Phone No</mat-label>
+        <input
+          matInput
+          placeholder="Phone No"
+          formControlName="phoneNo"
+          required
+        />
+
+        <mat-error
+          *ngIf="
+            signupForm.get('phoneNo')?.hasError('required') &&
+            signupForm.get('phoneNo')?.touched
+          "
+        >
+          Phone is required
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            signupForm.get('phoneNo')?.errors?.maxlength &&
+            signupForm.get('phoneNo')?.touched
+          "
+        >
+          PhoneNo must be equal to
+          {{ signupForm.get("phoneNo")?.errors?.maxlength.requiredLength }}
+          characters long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-design">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" />
+        <mat-error
+        *ngIf="
+          signupForm.get('dob')?.hasError('required') &&
+          signupForm.get('dob')?.touched
+        "
+      >
+        DOB is required
+      </mat-error>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="form-design">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option value="India">India</mat-option>
+          <mat-option value="Australia">Australia</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-radio-group formControlName="gender" color="primary">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card-footer>
+    <div style="margin: 2%; text-align: right">
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        (click)="submitForm(dialogbox)"
+        [disabled]="signupForm.invalid"
+      >
+        Save
+      </button>
+
+      <button mat-raised-button color="warn" (click)="clearform()">
+        Clear
+      </button>
+    </div>
+  </mat-card-footer>
+</form>
+
+<ng-template #dialogbox>
+  <div class="dialogDesign">
+    <h1 mat-dialog-title>Details</h1>
+    <div mat-dialog-content>
+      <p>Name: {{ formValue.name }}</p>
+      <p>Email: {{ formValue.email }}</p>
+      <p>phoneNo: {{ formValue.phoneNo }}</p>
+      <p>Location:{{ formValue.location }}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</ng-template>
