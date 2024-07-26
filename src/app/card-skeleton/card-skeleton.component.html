@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-head">
+      <app-skeleton-loader *ngIf="!loaded" Cwidth="100" Cheight="100" [circle]="true"></app-skeleton-loader>
+      <img *ngIf="loaded"
+      src="assets\Delta_png.png"       alt="logo">
+      <div class="info">
+        <app-skeleton-loader *ngIf="!loaded" Cwidth="100"></app-skeleton-loader>
+        <div *ngIf="loaded" class="name">Aishwarya </div>
+        <app-skeleton-loader *ngIf="!loaded" Cwidth="150"></app-skeleton-loader>
+        <div *ngIf="loaded" class="desc">Total Group Manager</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <app-skeleton-loader *ngIf="!loaded" Cwidth="100"></app-skeleton-loader>
+      <strong *ngIf="loaded">About</strong>
+      <app-skeleton-loader *ngIf="!loaded" Cwidth="270" Cheight="70"></app-skeleton-loader>
+      <div *ngIf="loaded" class="about">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In ullam cum mollitia commodi error voluptate ipsam
+        tempora unde voluptatum. Accusantium unde asperiores numquam amet debitis voluptate illum corporis! Perferendis,
+        debitis.
+      </div>
+    </div>
+  </div>
